@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Frequência Mensal - Setembro 2026</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 10px;
+      color: #000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .title-section {
+      width: 60%;
+    }
+
+    .title-section h2 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .info-line {
+      border-bottom: 1px solid #000;
+      padding-bottom: 2px;
+    }
+
+    .logos-section {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+
+    .logo-box img {
+      max-height: 55px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 11px;
+    }
+
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 6px 4px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .col-num {
+      width: 30px;
+    }
+
+    .col-nome {
+      width: 260px;
+      text-align: left;
+    }
+
+    .col-idade {
+      width: 45px;
+    }
+
+    .col-day {
+      width: 65px;
+      font-size: 9px;
+    }
+
+    .day-header {
+      font-size: 10px;
+      display: block;
+    }
+
+    .tag-seg {
+      color: #1b5e20;
+      font-weight: bold;
+    }
+
+    .tag-ter {
+      color: #0d47a1;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header-container">
+    <div class="title-section">
+      <h2>PROJETO COLETIVO – CONTROLE DE FREQUÊNCIA</h2>
+      <div class="info-grid">
+        <div class="info-line">Nome do Coletivo: ___________________________</div>
+        <div class="info-line">Mês/Ano: Setembro / 2026</div>
+        <div class="info-line">Atividade: _________________________________</div>
+        <div class="info-line">Local: ____________________________________</div>
+        <div class="info-line" style="grid-column: span 2;">Responsável:
+          ___________________________________________________________</div>
+      </div>
+    </div>
+
+    <!-- Logos no Canto Superior Direito -->
+    <div class="logos-section">
+      <div class="logo-box">
+        <img src="logo-llc.png" alt="Livro Livre Curió">
+      </div>
+      <div class="logo-box">
+        <img src="projeto-coletivos.png" alt="Projeto Coletivos Curió">
+      </div>
+      <div class="logo-box">
+        <img src="logo-abrinc.png" alt="Fundação Abrinq">
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="col-num" rowspan="2">Nº</th>
+        <th class="col-nome" rowspan="2">NOME COMPLETO DO PARTICIPANTE</th>
+        <th class="col-idade" rowspan="2">IDADE</th>
+        <th colspan="9">DIAS DE ATENDIMENTO - SETEMBRO / 2026</th>
+        <th rowspan="2">ASSINATURA / OBSERVAÇÃO</th>
+      </tr>
+      <tr>
+        <th class="col-day"><span class="day-header tag-ter">TER - 01/09</span>Criança Maior</th>
+        <th class="col-day"><span class="day-header tag-seg">SEG - 07/09</span>Criança</th>
+        <th class="col-day"><span class="day-header tag-ter">TER - 08/09</span>Criança Maior</th>
+        <th class="col-day"><span class="day-header tag-seg">SEG - 14/09</span>Criança</th>
+        <th class="col-day"><span class="day-header tag-ter">TER - 15/09</span>Criança Maior</th>
+        <th class="col-day"><span class="day-header tag-seg">SEG - 21/09</span>Criança</th>
+        <th class="col-day"><span class="day-header tag-ter">TER - 22/09</span>Criança Maior</th>
+        <th class="col-day"><span class="day-header tag-seg">SEG - 28/09</span>Criança</th>
+        <th class="col-day"><span class="day-header tag-ter">TER - 29/09</span>Criança Maior</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 20 Linhas em branco para preenchimento manual -->
+      <script>
+        for (let i = 1; i <= 20; i++) {
+          document.write(`
+            <tr>
+              <td>${i}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          `);
+        }
+      </script>
+    </tbody>
+  </table>
+
+</body>
+
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequência Mensal - Novembro 2026</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #000;
+      background-color: #e0e0e0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Barra de Ações (Não sai na impressão) */
+    .no-print {
+      max-width: 297mm;
+      margin: 0 auto;
+      padding: 10px 0;
+      text-align: right;
+    }
+
+    .btn-print {
+      padding: 8px 18px;
+      background-color: #0d47a1;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 13px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.2s;
+    }
+
+    .btn-print:hover {
+      background-color: #1565c0;
+    }
+
+    /* Estrutura de Folha A4 Paisagem */
+    .page {
+      width: 297mm;
+      height: 210mm;
+      max-height: 210mm;
+      padding: 6mm 10mm;
+      margin: 0 auto 20px auto;
+      background-color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
+      margin-bottom: 0;
+    }
+
+    @media print {
+      html, body {
+        height: auto;
+        background-color: transparent;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .page {
+        box-shadow: none !important;
+        margin: 0 !important;
+        border: none !important;
+        width: 297mm;
+        height: 210mm;
+        max-height: 210mm;
+        padding: 6mm 10mm;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+    }
+
+    /* Cabeçalho */
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+
+    .title-section {
+      flex: 1;
+      margin-right: 15px;
+    }
+
+    .title-section h2 {
+      margin: 0 0 2px 0;
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .title-section h3 {
+      margin: 0 0 4px 0;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: #222;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 12px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .info-line {
+      border-bottom: 1px solid #000;
+      padding-bottom: 1px;
+      white-space: nowrap;
+    }
+
+    .logos-section {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-box img {
+      max-height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Tabelas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2px;
+      font-size: 10px;
+      table-layout: fixed;
+      flex: 1;
+      height: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 2px 4px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      font-size: 10px;
+    }
+
+    tbody tr {
+      height: 16px;
+    }
+
+    .folha-1 tbody tr {
+      height: 19px;
+    }
+
+    .folha-2 tbody tr {
+      height: 15.5px;
+    }
+
+    .col-num {
+      width: 3.5%;
+    }
+
+    .col-nome {
+      width: 30%;
+      text-align: left;
+      padding-left: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .col-idade {
+      width: 6%;
+    }
+
+    .col-day {
+      width: 8.5%;
+      font-size: 10px;
+    }
+
+    .day-header {
+      font-size: 10.5px;
+      display: block;
+      font-weight: bold;
+    }
+
+    .tag-seg {
+      color: #1b5e20;
+      font-weight: bold;
+    }
+
+    .tag-ter {
+      color: #0d47a1;
+      font-weight: bold;
+    }
+
+    .col-obs {
+      width: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Barra de Ações (Não sai na impressão) -->
+  <div class="no-print">
+    <button class="btn-print" onclick="window.print()">
+      🖨️ Imprimir / Salvar PDF
+    </button>
+  </div>
+
+  <!-- FOLHA 1: CRIANÇAS (02 A 07 ANOS) - SEGUNDAS-FEIRAS -->
+  <div class="page folha-1">
+    <div class="header-container">
+      <div class="title-section">
+        <h2>PROJETO COLETIVOS – CICLO 4</h2>
+        <h3>CONTROLE DE FREQUÊNCIA (CRIANÇAS - 02 A 07 ANOS)</h3>
+        <div class="info-grid">
+          <div class="info-line">Nome do Coletivo: Livro Livre Curió</div>
+          <div class="info-line">Mês/Ano: Novembro / 2026</div>
+          <div class="info-line">Atividade: Clube de Leitura</div>
+          <div class="info-line">Local: Leonice Aguiar, 330</div>
+          <div class="info-line" style="grid-column: span 2;">Responsável: ___________________________________________________________</div>
+        </div>
+      </div>
+
+      <!-- Logos no Canto Superior Direito -->
+      <div class="logos-section">
+        <div class="logo-box">
+          <img src="logo-llc.png" alt="Livro Livre Curió">
+        </div>
+        <div class="logo-box">
+          <img src="projeto-coletivos.png" alt="Projeto Coletivos Curió">
+        </div>
+        <div class="logo-box">
+          <img src="logo-abrinc.png" alt="Fundação Abrinq">
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-num" rowspan="2">Nº</th>
+          <th class="col-nome" rowspan="2">NOME COMPLETO DO PARTICIPANTE</th>
+          <th class="col-idade" rowspan="2">IDADE</th>
+          <th colspan="5">DIAS DE ATIVIDADE - NOVEMBRO / 2026</th>
+          <th class="col-obs" rowspan="2">ASSINATURA / OBSERVAÇÃO</th>
+        </tr>
+        <tr>
+          <th class="col-day"><span class="day-header tag-seg">SEG - 02/11</span>02 a 07</th>
+          <th class="col-day"><span class="day-header tag-seg">SEG - 09/11</span>02 a 07</th>
+          <th class="col-day"><span class="day-header tag-seg">SEG - 16/11</span>02 a 07</th>
+          <th class="col-day"><span class="day-header tag-seg">SEG - 23/11</span>02 a 07</th>
+          <th class="col-day"><span class="day-header tag-seg">SEG - 30/11</span>02 a 07</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td class="col-nome">Agatha Luiza Fernandes</td><td>06 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>2</td><td class="col-nome">Alvaro Vinicius de Oliveira</td><td>06 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>3</td><td class="col-nome">Ana Luisa Sousa Ferreira</td><td>04 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>4</td><td class="col-nome">Eliza Ramos</td><td>05 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>5</td><td class="col-nome">Eloísa Rivca Pereira</td><td>06 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>6</td><td class="col-nome">João Arthur de Oliveira</td><td>04 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>7</td><td class="col-nome">João Miguel Nascimento</td><td>02 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>8</td><td class="col-nome">José Miguel Ramos</td><td>03 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>9</td><td class="col-nome">Laís Monteiro</td><td>07 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>10</td><td class="col-nome">Malú da Costa Cruz</td><td>05 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>11</td><td class="col-nome">Márcio Victor Ramos</td><td>06 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>12</td><td class="col-nome">Maria Thalia Silva</td><td>03 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>13</td><td class="col-nome">Marina Alves da Silva</td><td>03 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>14</td><td class="col-nome">Paulo Thauan de Sousa</td><td>07 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>15</td><td class="col-nome">Saulo Ravi de Sousa</td><td>07 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>16</td><td class="col-nome">Maria Valentina da Silva</td><td>08 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>17</td><td class="col-nome">Debora Maria de Oliveira</td><td>07 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>18</td><td class="col-nome">Emanuela de Oliveira</td><td>05 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>19</td><td class="col-nome">Gael Cesar Oliveira</td><td>02 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>20</td><td class="col-nome"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>21</td><td class="col-nome"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>22</td><td class="col-nome"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>23</td><td class="col-nome"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>24</td><td class="col-nome"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>25</td><td class="col-nome"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOLHA 2: CRIANÇAS MAIORES (08 A 14 ANOS) - TERÇAS-FEIRAS -->
+  <div class="page folha-2">
+    <div class="header-container">
+      <div class="title-section">
+        <h2>PROJETO COLETIVOS – CICLO 4</h2>
+        <h3>CONTROLE DE FREQUÊNCIA (CRIANÇAS MAIORES - 08 A 14 ANOS)</h3>
+        <div class="info-grid">
+          <div class="info-line">Nome do Coletivo: Livro Livre Curió</div>
+          <div class="info-line">Mês/Ano: Novembro / 2026</div>
+          <div class="info-line">Atividade: Clube de Leitura</div>
+          <div class="info-line">Local: Leonice Aguiar, 330</div>
+          <div class="info-line" style="grid-column: span 2;">Responsável: ___________________________________________________________</div>
+        </div>
+      </div>
+
+      <!-- Logos no Canto Superior Direito -->
+      <div class="logos-section">
+        <div class="logo-box">
+          <img src="logo-llc.png" alt="Livro Livre Curió">
+        </div>
+        <div class="logo-box">
+          <img src="projeto-coletivos.png" alt="Projeto Coletivos Curió">
+        </div>
+        <div class="logo-box">
+          <img src="logo-abrinc.png" alt="Fundação Abrinq">
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-num" rowspan="2">Nº</th>
+          <th class="col-nome" rowspan="2">NOME COMPLETO DO PARTICIPANTE</th>
+          <th class="col-idade" rowspan="2">IDADE</th>
+          <th colspan="4">DIAS DE ATIVIDADE - NOVEMBRO / 2026</th>
+          <th class="col-obs" rowspan="2">ASSINATURA / OBSERVAÇÃO</th>
+        </tr>
+        <tr>
+          <th class="col-day"><span class="day-header tag-ter">TER - 03/11</span>08 a 14</th>
+          <th class="col-day"><span class="day-header tag-ter">TER - 10/11</span>08 a 14</th>
+          <th class="col-day"><span class="day-header tag-ter">TER - 17/11</span>08 a 14</th>
+          <th class="col-day"><span class="day-header tag-ter">TER - 24/11</span>08 a 14</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td class="col-nome">Aila Virginio Alves</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>2</td><td class="col-nome">Alicia Silva Nascimento</td><td>09 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>3</td><td class="col-nome">Anna Livia Dinis</td><td>14 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>4</td><td class="col-nome">Benyann Silva Pereira</td><td>09 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>5</td><td class="col-nome">Christofer Costa Moura</td><td>11 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>6</td><td class="col-nome">Esther Bilhar de Sousa</td><td>09 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>7</td><td class="col-nome">Hanna Viviane de Sousa</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>8</td><td class="col-nome">Helias Sampaio Felix</td><td>13 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>9</td><td class="col-nome">João Gabriel Nascimento</td><td>13 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>10</td><td class="col-nome">João Guilherme de Sousa</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>11</td><td class="col-nome">João Guilherme Nascimento da Silva</td><td>08 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>12</td><td class="col-nome">Ludimila Barbosa da Silva</td><td>09 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>13</td><td class="col-nome">Maria Clara Bilhar</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>14</td><td class="col-nome">Maria Eduarda Pereira</td><td>07 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>15</td><td class="col-nome">Maria Eloá da Silva</td><td>08 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>16</td><td class="col-nome">Maria Sofia Ribeiro</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>17</td><td class="col-nome">Pamela Freitas</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>18</td><td class="col-nome">Paola Freitas</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>19</td><td class="col-nome">Pedro Artur Dinis</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>20</td><td class="col-nome">Pedro Rair Santos Monteiro</td><td>08 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>21</td><td class="col-nome">Pedro Ramon Santos</td><td>11 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>22</td><td class="col-nome">Raissa Kelly Alves</td><td>11 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>23</td><td class="col-nome">Ryan Alves da Silva</td><td>08 anos</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>24</td><td class="col-nome">Sofia Ramos da Silva</td><td>09 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>25</td><td class="col-nome">Tereza Cristina Dinis</td><td>09 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>26</td><td class="col-nome">Victoria Suellen Ribeiro</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>27</td><td class="col-nome">Vitoria Sousa Silva</td><td>13 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>28</td><td class="col-nome">Yohanna Sousa Nascimento</td><td>11 anos</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>29</td><td class="col-nome">Ana Livia Araujo Fontão</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>30</td><td class="col-nome">Matheus Levi Almeida Soares</td><td>10 anos</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>31</td><td class="col-nome"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>32</td><td class="col-nome"></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.querySelectorAll('.folha-1 tbody tr').forEach((row) => {
+      while (row.cells.length < 9) {
+        row.insertCell(-1);
+      }
+    });
+
+    document.querySelectorAll('.folha-2 tbody tr').forEach((row) => {
+      while (row.cells.length < 8) {
+        row.insertCell(-1);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
